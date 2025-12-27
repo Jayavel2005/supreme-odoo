@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Odoo-inspired Purple Palette */
+    --primary: 312 26% 44%;
+    --primary-foreground: 0 0% 100%;
+    --primary-dark: 312 28% 33%;
+    --primary-light: 296 25% 55%;
+    --primary-pale: 290 35% 92%;
+    
+    /* Grayscale */
+    --background: 0 0% 96%;
+    --foreground: 0 0% 17%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 17%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 17%;
+    
+    /* Neutrals */
+    --muted: 0 0% 94%;
+    --muted-foreground: 0 0% 35%;
+    --accent: 290 35% 92%;
+    --accent-foreground: 312 26% 44%;
+    
+    /* Secondary */
+    --secondary: 0 0% 94%;
+    --secondary-foreground: 0 0% 17%;
+    
+    /* Semantic Colors */
+    --success: 158 85% 26%;
+    --success-foreground: 0 0% 100%;
+    --success-bg: 158 45% 92%;
+    
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    --warning-bg: 45 93% 94%;
+    
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --destructive-bg: 0 93% 94%;
+    
+    --info: 199 89% 40%;
+    --info-foreground: 0 0% 100%;
+    --info-bg: 199 93% 94%;
+    
+    /* Borders & Inputs */
+    --border: 0 0% 83%;
+    --input: 0 0% 83%;
+    --ring: 312 26% 44%;
+    
+    --radius: 0.375rem;
+    
+    /* Sidebar */
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 0 0% 17%;
+    --sidebar-primary: 312 26% 44%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 290 35% 92%;
+    --sidebar-accent-foreground: 312 26% 44%;
+    --sidebar-border: 0 0% 90%;
+    --sidebar-ring: 312 26% 44%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  }
+
+  .font-mono {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+  }
+}
+
+@layer components {
+  .odoo-card {
+    @apply bg-card rounded-md border border-border shadow-sm transition-all duration-200;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+
+  .odoo-card:hover {
+    @apply border-primary/30;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+  }
+
+  .odoo-input {
+    @apply bg-white border border-border rounded px-3 py-2 text-sm transition-all duration-200;
+  }
+
+  .odoo-input:focus {
+    @apply border-primary outline-none ring-2 ring-primary-pale;
+    --tw-ring-color: hsl(var(--primary-pale));
+  }
+
+  .priority-critical {
+    @apply border-l-4 border-l-destructive;
+  }
+
+  .priority-high {
+    @apply border-l-4 border-l-warning;
+  }
+
+  .priority-medium {
+    @apply border-l-4 border-l-info;
+  }
+
+  .priority-low {
+    @apply border-l-4 border-l-muted-foreground;
+  }
+
+  .stage-badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold;
+  }
+
+  .stage-new {
+    @apply bg-info-bg text-info;
+  }
+
+  .stage-assigned {
+    @apply bg-primary-pale text-primary;
+  }
+
+  .stage-in_progress {
+    @apply bg-warning-bg text-warning;
+  }
+
+  .stage-on_hold {
+    @apply bg-muted text-muted-foreground;
+  }
+
+  .stage-repaired {
+    @apply bg-success-bg text-success;
+  }
+
+  .stage-closed {
+    @apply bg-muted text-muted-foreground;
+  }
+
+  .stage-cancelled {
+    @apply bg-destructive-bg text-destructive;
+  }
+
+  .kanban-column {
+    @apply flex flex-col min-w-[280px] max-w-[320px] bg-muted/50 rounded-lg p-3;
+  }
+
+  .kanban-card {
+    @apply odoo-card p-3 mb-2 cursor-grab active:cursor-grabbing;
+  }
+
+  .sidebar-item {
+    @apply flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200;
+  }
+
+  .sidebar-item:hover {
+    @apply bg-accent text-accent-foreground;
+  }
+
+  .sidebar-item.active {
+    @apply bg-primary text-primary-foreground;
+  }
+}
+
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 3px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground));
+  }
+}
